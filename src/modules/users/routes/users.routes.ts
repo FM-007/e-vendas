@@ -17,5 +17,14 @@ usersRouter.post(
   }),
   usersController.create,
 );
+usersRouter.use(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+  }),
+);
 
 export default usersRouter;
